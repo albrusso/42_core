@@ -5,24 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 16:28:34 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/11 16:35:07 by albrusso         ###   ########.fr       */
+/*   Created: 2023/10/12 16:16:05 by albrusso          #+#    #+#             */
+/*   Updated: 2023/10/12 16:29:57 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "philo.h"
 
-t_data	*init_data(int ac, char *av[])
+bool	valid_args(int ac, char *av[])
 {
-	t_data	*d;
+	int	i;
+	int	j;
 
-	d->nbr_philo = ft_aoti(av[1]);
-	d->time_die = ft_atoi(av[2]);
-	d->time_eat = ft_atoi(av[3]);
-	d->time_sleep = ft_atoi(av[4]);
+	i = 0;
+	while (i < ac)
+	{
+		j = 0;
+		while (av[i][j])
+		{
+			if (av[i][j] < '0' || av[i][j] > '9')
+				return (false);
+			j++;
+		}
+		if (ft_atoi(av[i]) < 1)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+void	init_data(int ac, char *av[], t_data *d)
+{
+	if (valid_args(ac, av))
+		return ;
+	d->p_nbr = ft_atoi(av[1]);
+	d->t_die = ft_atoi(av[2]);
+	d->t_eat = ft_atoi(av[3]);
+	d->t_sleep = ft_atoi(av[4]);
 	if (ac == 5)
-		d->nbr_repeat = -1;
+		d->r_nbr = -1;
 	else
-		d->nbr_repeat = ft_atoi(av[5]);
-	return (d);
+		d->r_nbr = ft_atoi(av[5]);
+	
 }

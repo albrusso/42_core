@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 16:32:14 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/11 16:32:41 by albrusso         ###   ########.fr       */
+/*   Created: 2023/10/12 16:17:33 by albrusso          #+#    #+#             */
+/*   Updated: 2023/10/12 16:17:46 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "philo.h"
 
 int	ft_atoi(const char *str)
 {
