@@ -4,8 +4,12 @@
 		"pthread.h": "c",
 		"stdio.h": "c",
 		"time.h": "c",
+<<<<<<< HEAD
 		"stdlib.h": "c",
 		"philo.h": "c",
 		"stdbool.h": "c"
+=======
+		"stdlib.h": "c"
+>>>>>>> 37f2574e2a8ed8835c1bee07a2c7fa30326e3029
 	}
 }
