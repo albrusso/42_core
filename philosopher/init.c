@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:16:05 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/13 12:35:48 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:37:11 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	init_data(int ac, char *av[], t_data *d)
 	}
 	if (pthread_mutex_init(&d->m, NULL) != 0)
 		return ;
+	if (pthread_mutex_init(&d->s, NULL) != 0)
+		return ;
 }
 
 void	init_philo(t_data *d)
@@ -75,7 +77,8 @@ void	init_philo(t_data *d)
 		d->p[i].last_meal = 0;
 		d->p[i].meal_count = 0;
 		d->p[i].f.l = i;
-		d->p[i].f.r = (i + i) % d->p_nbr;
+		d->p[i].f.r = (i + 1) % d->p_nbr;
+		d->p[i].d = d;
 		i++;
 	}
 }

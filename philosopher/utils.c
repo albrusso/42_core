@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:17:33 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/13 12:50:50 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:44:45 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,13 @@ long long get_time()
 	
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	print(t_data *d, int i, char *s)
+{
+	p_die(d, i - 1);
+	pthread_mutex_lock(&d->s);
+	if (d->stop == false)
+		printf("%lld %d %s", get_time() - d->t_start, i, s);
+	pthread_mutex_unlock(&d->s);
 }
