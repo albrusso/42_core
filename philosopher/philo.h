@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 16:02:16 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/12 16:32:50 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:57:04 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 # include <stdbool.h>
 
 # define ARGS "Args will be: ./philo [nbr_philo] [time_die] [time_eat] [time_sleep] ([nbr_repeat])"
-
+# define DIE "is died"
+# define EAT "is eating"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
+# define FORK "taken a fork"
 typedef struct s_fork
 {
 	int	r;
@@ -40,18 +44,21 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int	p_nbr;
+	int	t_id;
 	long long	t_die;
 	long long	t_eat;
 	long long	t_sleep;
 	int	r_nbr;
 	long long	t_start;
+	bool	stop;
 	t_philo	*p;
 	pthread_mutex_t	*f;
 	pthread_mutex_t	m;
 }		t_data;
 
 //init.c
-
+void	init_data(int ac, char *av[], t_data *d);
+void	init_philo(t_data *d);
 
 //utils.c
 int	ft_atoi(const char *str);
