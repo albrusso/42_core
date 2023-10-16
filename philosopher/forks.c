@@ -21,7 +21,12 @@ pthread_mutex_t	*init_forks(t_args *args)
 
 void	take_fork(t_philo *philo)
 {
-	if (philo->philo_rang % 2 == 0)
+	if (philo->args->nbr_of_philo == 1)
+	{
+		pthread_mutex_lock(philo->r_fork);
+		supervisor(P_TAKE_FORK, philo);
+	}
+	else if (philo->philo_rang % 2 == 0)
 	{
 		pthread_mutex_lock(philo->l_fork);
 		supervisor(P_TAKE_FORK, philo);

@@ -61,7 +61,10 @@ t_args	*init_args(char *av[])
 		args->nbr_of_time = ft_atoi(av[5]);
 	else
 		args->nbr_of_time = -1;
+	args->stop = false;
 	if (pthread_mutex_init(&args->root, NULL) != 0)
+		error_exit(E_MUTEX_INIT, NULL, NULL, args);
+	if (pthread_mutex_init(&args->print, NULL) != 0)
 		error_exit(E_MUTEX_INIT, NULL, NULL, args);
 	return (args);
 }

@@ -27,8 +27,8 @@ void	supervisor(char *str, t_philo *philo)
 {
 	long long	time_to_print;
 
-	pthread_mutex_lock(&philo->args->root);
+	pthread_mutex_lock(&philo->args->print);
 	time_to_print = get_time() - philo->time_start;
 	printf("%lld %d %s", time_to_print, philo->philo_rang, str);
-	pthread_mutex_unlock(&philo->args->root);
+	pthread_mutex_unlock(&philo->args->print);
 }

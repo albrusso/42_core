@@ -6,7 +6,7 @@
 #    By: albrusso <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/29 12:46:46 by albrusso          #+#    #+#              #
-#    Updated: 2023/10/13 16:02:22 by albrusso         ###   ########.fr        #
+#    Updated: 2023/10/16 15:21:48 by albrusso         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ NAME = philo
 SRC = main.c action.c args.c error.c forks.c free.c philo.c routine.c thread.c utils.c
 OBJ = $(SRC:.c=.o)
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -pthread
+CFLAGS = -Wall -Werror -Wextra -pthread -g
 
 all: $(NAME)
 

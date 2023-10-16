@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:47:20 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/13 16:01:05 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/10/16 16:06:58 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ typedef struct s_args
 	long long	time_to_eat;
 	long long	time_to_sleep;
 	int	nbr_of_time;
+	bool	stop;
 	pthread_mutex_t	root;
+	pthread_mutex_t	print;
 }				t_args;
 
 //struct of philosopher
@@ -77,6 +79,7 @@ void	start(t_philo *philo, pthread_mutex_t *forks, t_args *args);
 
 //routine.c
 void  *routine(void *_philo);
+bool  all_eat(t_philo *philo);
 
 //action.c
 void  p_eat(t_philo *philo);
