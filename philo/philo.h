@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:47:20 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/16 16:06:58 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/10/19 12:53:08 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_args	*init_args(char *av[]);
 //philo.c
 t_philo	*init_philo(t_args *args, pthread_mutex_t *forks);
 void	supervisor(char *str, t_philo *philo);
-
 //forks.c
 pthread_mutex_t	*init_forks(t_args *args);
 void	take_fork(t_philo *philo);
@@ -80,6 +79,7 @@ void	start(t_philo *philo, pthread_mutex_t *forks, t_args *args);
 //routine.c
 void  *routine(void *_philo);
 bool  all_eat(t_philo *philo);
+void  one_philo(t_philo *philo);
 
 //action.c
 void  p_eat(t_philo *philo);

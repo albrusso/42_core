@@ -6,7 +6,7 @@
 /*   By: albrusso <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 14:59:33 by albrusso          #+#    #+#             */
-/*   Updated: 2023/10/16 16:02:16 by albrusso         ###   ########.fr       */
+/*   Updated: 2023/10/19 13:01:50 by albrusso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int argc, char *argv[])
 	args = init_args(argv);
 	forks = init_forks(args);
 	philo = init_philo(args, forks);
+	if (args->nbr_of_philo == 1)
+		one_philo(philo);
 	start(philo, forks, args);
 	free_forks(philo, forks, args);
 	free(args);

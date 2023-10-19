@@ -51,28 +51,51 @@ void  *routine(void *_philo)
       t_philo     *philo;
 
       philo = (t_philo *)_philo;
-      while (1)
+      if (philo->args->nbr_of_time > 0)
       {
-            if (philo->args->stop == true)
-                  error_exit(NULL, philo, NULL, NULL);
-            if (philo->args->nbr_of_philo == 1)
+            while (philo->args->nbr_of_time > philo->meal_count && philo->args->stop == false)
             {
-                  take_fork(philo);
-                  usleep(philo->args->time_to_die * 1000);
-                  pthread_mutex_unlock(philo->r_fork);
-                  supervisor(P_DIE, philo);
-		      philo->args->stop = true;
-            }
-            else
-            {     
-                  philo->args->stop = philo_die(philo);
-                  if (philo->args->stop == true)
-                        error_exit(NULL, philo, NULL, NULL);
                   take_fork(philo);
                   p_eat(philo);
                   p_sleep(philo);
                   supervisor(P_THINK, philo);
+                  philo_die(philo);
             }
       }
+      else
+      {
+            while (1)
+            {
+            	if (philo->args->nbr_of_philo == 1)
+            	{
+                  	take_fork(philo);
+                 		usleep(philo->args->time_to_die * 1000);
+                 		pthread_mutex_unlock(philo->r_fork);
+                 		supervisor(P_DIE, philo);
+		      	philo->args->stop = true;
+            	}
+            	else
+            	{     
+                  	take_fork(philo);
+                  	p_eat(philo);
+                  	p_sleep(philo);
+                  	supervisor(P_THINK, philo);
+				philo->args->stop = philo_die(philo);
+            	}
+            	if (philo->args->stop == true)
+                  	break ;
+      	}     
+      }
       return (NULL);
+}
+
+void  one_philo(t_philo *philo)
+{
+      philo->time_start = get_time();
+      pthread_mutex_lock(philo->l_fork);
+      supervisor(P_TAKE_FORK, philo);
+      usleep(philo->args->time_to_die * 1000);
+      pthread_mutex_unlock(philo->l_fork);
+      supervisor(P_DIE, philo);
+      exit(4);
 }
