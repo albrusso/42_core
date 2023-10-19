@@ -21,6 +21,11 @@ void	start(t_philo *philo, pthread_mutex_t *forks, t_args *args)
 			error_exit(E_THREAD_CREATE, philo, forks, args);
 		i += 2;
 	}
+	while (1)
+	{
+		if (philo_die(philo) == true)
+			free_forks(philo, forks, args);	
+	}
 	i = 0;
 	while (i < args->nbr_of_philo)
 	{
