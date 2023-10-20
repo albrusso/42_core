@@ -40,20 +40,30 @@ typedef struct s_args
 	long long	time_to_die;
 	long long	time_to_eat;
 	long long	time_to_sleep;
+	long long	time_start;
 	int	nbr_of_time;
 	bool	stop;
+	pthread_t	die;
 	pthread_mutex_t	root;
+	pthread_mutex_t	m;
 	pthread_mutex_t	print;
+	pthread_mutex_t	*fork;
 }				t_args;
 
 //struct of philosopher
 typedef struct s_philo
 {
+	int	nbr_of_philo;
+	long long	time_to_die;
+	long long	time_to_eat;
+	long long	time_to_sleep;
+	long long	time_start;
+	int	nbr_of_time;
+
 	t_args	*args;
 	int	philo_rang;
 	int	meal_count;
 	long int	time_last_meal;
-	long long	time_start;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
 	pthread_t	philo_thread;
@@ -66,7 +76,7 @@ bool	args_digit(int ac, char *av[]);
 t_args	*init_args(char *av[]);
 
 //philo.c
-t_philo	*init_philo(t_args *args, pthread_mutex_t *forks);
+t_philo	*init_philo(t_args *args);
 void	supervisor(char *str, t_philo *philo);
 //forks.c
 pthread_mutex_t	*init_forks(t_args *args);
@@ -74,7 +84,7 @@ void	take_fork(t_philo *philo);
 void	drop_fork(t_philo *philo);
 
 //thread.c
-void	start(t_philo *philo, pthread_mutex_t *forks, t_args *args);
+void	start(t_philo *philo, t_args *args);
 
 //routine.c
 void  *routine(void *_philo);
@@ -84,7 +94,7 @@ void  one_philo(t_philo *philo);
 //action.c
 void  p_eat(t_philo *philo);
 void  p_sleep(t_philo *philo);
-bool  philo_die(t_philo *philo);
+void  *philo_die(void *philo);
 
 //error.c
 void	error_exit(char *msg, t_philo *philo, pthread_mutex_t *forks, t_args *args);
